@@ -8,7 +8,6 @@ from typing import Any, Dict, List, Tuple
 
 from sky.skylet import constants
 
-
 def _check_not_both_fields_present(field1: str, field2: str):
     return {
         'oneOf': [{
@@ -389,6 +388,11 @@ def get_service_schema():
                 'type': 'string',
                 'case_insensitive_enum': list(
                     load_balancing_policies.LB_POLICIES.keys())
+            },
+            'load_balancer_type': {
+                'type': 'string',
+                'case_insensitive_enum': ["python", "envoy"] # TODO can't
+                # import due to a cycle.  What do I do?
             },
         }
     }
